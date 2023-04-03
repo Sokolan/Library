@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./javascript.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <p>Library app</p>
+      </div>
+      <button class="add-book">+</button>
+    </div>
+    <div class="cards-container">
+      <form id="add-book-form">
+        <div class="author-form">
+          <label for="author">Book Author</label>
+          <input type="text" name="title" id="author" minlength="2" maxlength="20" required>
+        </div>
+        <div class="title-form">
+          <label for="title">Book Title</label>
+          <input type="text" name="title" id="title" minlength="1" maxlength="30" required>
+        </div>
+        <div class="pages">
+          <label for="pages">Number Of Pages</label>
+          <input type="text" name="pages" id="pages" pattern="[0-9]{1,}" required>
+        </div>
+        <div class="form-checkbox">
+          <label for="read-status">Book Read</label>
+          <input type="checkbox" >
+        </div>
+        <div class="form-buttons">
+          <button type="submit" form="add-book-form" class="submit-button">submit</button>
+          <!-- <button type="submit" form="add-book-form" class="cancel-button">cancel</button> -->
+        </div>
+      </form>
+    </div>
+    <div class="footer">
+      <p>made by Sokolan</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+body, html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.container {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 5fr 3rem;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  background-color: gray;
+  padding: 10px 30px;
+}
+
+.logo {
+  font-size: 3rem;
+  font-weight: 600;
+  font-family: roboto, sans-serif;
+  color: white;
+}
+
+.add-book {
+  justify-self: right;
+  margin-right: 50px;
+  font-size: 3rem;
+  padding: 20px 30px;
+}
+
+.cards-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items: center;
+  justify-items: center;
+  overflow: scroll;
+  background-color: aquamarine;
+  gap: 20px;
+  padding: 30px;
+}
+
+.card {
+  --border-top: 10px;
+  display: grid;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  height: 300px;
+  width: 200px;
+  background-color: white;
+  border-radius: 10px;
+  border-top: var(--border-top) solid red;
+
+}
+
+.card.read {
+  border-top: var(--border-top) solid green;
+}
+
+.footer {
+  background-color: grey;
+  color: white;
+  font-family: roboto, sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  position: absolute;
+  background-color: rgb(236, 189, 186);
+  display: none;
+  flex-direction: column;
+  border-radius: 10px;
+  border-top: 5px solid orange;
+  box-shadow: 5px 5px 5px rgb(24, 21, 21);
+  padding: 30px;
+  gap: 5px;
+  font-family: roboto, sans-serif;
+  font-weight: 500;
+}
+
+form > div {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+}
+
+.form-checkbox > input{
+  justify-self: left;
+  margin: 0;
+}
+
+form > .form-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.form-buttons > * {
+  font-weight: 600;
+  padding: 10px 30px;
+  border: 1px solid rgba(0,0,0, 30%);
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px rgb(160, 160, 160);
+}
+
+.form-buttons > .submit-button {
+  background-color: greenyellow;
+}
+
+/* .form-buttons > .cancel-button {
+  background-color: red;
+} */
