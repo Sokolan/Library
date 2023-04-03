@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -9,12 +9,11 @@ function Book(title, author, pages, read) {
 
 Book.prototype.toggleRead = function toggleRead() {
   this.read = !this.read;
-}
-
-
+};
 
 function addBookToLibrary() {
   const form = document.querySelector('form');
+
   form.style.display = 'flex';
 }
 
@@ -46,7 +45,7 @@ function createCard(book, bookId) {
   pages.textContent = book.pages;
   card.appendChild(pages);
 
-// container for the read status  
+  //  container for the read status
   const readStatus = document.createElement('div');
   readStatus.classList.add('read-status');
 
@@ -54,13 +53,13 @@ function createCard(book, bookId) {
   label.setAttribute('for', 'checkbox');
   label.textContent = 'read';
   readStatus.appendChild(label);
-  
+
   const read = document.createElement('input');
   read.setAttribute('type', 'checkbox');
   read.setAttribute('id', 'checkbox');
   read.addEventListener('click', changeReadStatus);
 
-  if(book.read){
+  if (book.read) {
     read.checked = true;
     card.classList.add('read');
   }
@@ -68,24 +67,59 @@ function createCard(book, bookId) {
   readStatus.appendChild(read);
   card.appendChild(readStatus);
 
+  const deleteButton = document.createElement('button');
+  deleteButton.textContent = 'Remove Book';
+  deleteButton.addEventListener('click', deleteCardHandler);
+  card.appendChild(deleteButton);
+
   return card;
 }
 
 function displayBooks() {
-  const container = document.querySelector('.cards-container')
-  for(let i = 0 ; i < myLibrary.length ; i += 1) {
-    container.appendChild(createCard(myLibrary[i], i));    
+  const container = document.querySelector('.cards-container');
+  const form = document.querySelector('form');
+  container.replaceChildren();
+  container.appendChild(form);
+  for (let i = 0; i < myLibrary.length; i += 1) {
+    container.appendChild(createCard(myLibrary[i], i));
   }
 }
 
+function submitEventHandler(event) {
+  const author = document.querySelector('#author').value;
+  const title = document.querySelector('#title').value;
+  const pages = document.querySelector('#pages').value;
+  const read = document.querySelector('#checkbox').checked;
+  const book = new Book(title, author, pages, read);
+  myLibrary.push(book);
+
+  displayBooks();
+
+  const form = document.querySelector('form');
+  form.reset();
+  form.style.display = 'none';
+  event.preventDefault();
+}
+
+function deleteCardHandler(e) {
+  const card = e.target.parentElement;
+  console.log(card.id);
+  myLibrary.splice(card.id, 1);
+  displayBooks();
+}
+
 document.querySelector('.add-book').addEventListener('click', addBookToLibrary);
+document.querySelector('.submit-button').addEventListener('click', submitEventHandler);
 
-const book1 = new Book('A', 'A', 10, false);
-const book2 = new Book('B', 'B', 10, true);
-const book3 = new Book('C', 'C', 10, true);
-const book4 = new Book('D', 'D', 10, true);
-const book5 = new Book('Boot', 'bootovich', 420, false);
-
+const book1 = new Book("To Kill a Mockingbird", "Harper Lee", 281, true);
+const book2 = new Book("1984", "George Orwell", 328, true);
+const book3 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 180, false);
+const book4 = new Book("Pride and Prejudice", "Jane Austen", 279, true);
+const book5 = new Book("Brave New World", "Aldous Huxley", 288, false);
+const book6 = new Book("The Catcher in the Rye", "J.D. Salinger", 277, true);
+const book7 = new Book("To the Lighthouse", "Virginia Woolf", 209, false);
+const book8 = new Book("The Picture of Dorian Gray", "Oscar Wilde", 254, true);
+const book9 = new Book("The Bell Jar", "Sylvia Plath", 288, false);
 
 myLibrary.push(book1);
 myLibrary.push(book2);
@@ -95,6 +129,9 @@ myLibrary.push(book4);
 myLibrary.push(book4);
 myLibrary.push(book4);
 myLibrary.push(book5);
-
+myLibrary.push(book6);
+myLibrary.push(book7);
+myLibrary.push(book8);
+myLibrary.push(book9);
 
 displayBooks();

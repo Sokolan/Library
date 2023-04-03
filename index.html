@@ -20,19 +20,19 @@
       <form id="add-book-form">
         <div class="author-form">
           <label for="author">Book Author</label>
-          <input type="text" name="title" id="author" minlength="2" maxlength="20" required>
+          <input type="text" name="title" id="author">
         </div>
         <div class="title-form">
           <label for="title">Book Title</label>
-          <input type="text" name="title" id="title" minlength="1" maxlength="30" required>
+          <input type="text" name="title" id="title">
         </div>
-        <div class="pages">
+        <div class="pages-form">
           <label for="pages">Number Of Pages</label>
-          <input type="text" name="pages" id="pages" pattern="[0-9]{1,}" required>
+          <input type="text" name="pages" id="pages">
         </div>
         <div class="form-checkbox">
           <label for="read-status">Book Read</label>
-          <input type="checkbox" >
+          <input type="checkbox" id="checkbox">
         </div>
         <div class="form-buttons">
           <button type="submit" form="add-book-form" class="submit-button">submit</button>
