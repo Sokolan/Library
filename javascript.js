@@ -1,4 +1,5 @@
-let myLibrary = [];
+/* eslint-disable quotes */
+const myLibrary = [];
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -12,72 +13,73 @@ Book.prototype.toggleRead = function toggleRead() {
 };
 
 function addBookToLibrary() {
-  const form = document.querySelector('form');
+  const form = document.querySelector("form");
 
-  form.style.display = 'flex';
+  form.style.display = "flex";
 }
 
 function changeReadStatus(e) {
   const card = e.target.parentElement.parentElement;
-  card.classList.toggle('read');
+  card.classList.toggle("read");
 
   const bookId = card.id;
   myLibrary[bookId].toggleRead();
 }
 
 function createCard(book, bookId) {
-  const card = document.createElement('div');
-  card.setAttribute('id', `${bookId}`);
-  card.classList.add('card');
+  const card = document.createElement("div");
+  card.setAttribute("id", `${bookId}`);
+  card.classList.add("card");
 
-  const title = document.createElement('p');
-  title.classList.add('title');
-  title.textContent = book.title;
+  const title = document.createElement("p");
+  title.classList.add("title");
+  title.textContent = `Title: ${book.title}`;
   card.appendChild(title);
 
-  const author = document.createElement('p');
-  author.classList.add('author');
-  author.textContent = book.author;
+  const author = document.createElement("p");
+  author.classList.add("author");
+  author.textContent = `By: ${book.author}`;
   card.appendChild(author);
 
-  const pages = document.createElement('p');
-  pages.classList.add('pages');
-  pages.textContent = book.pages;
+  const pages = document.createElement("p");
+  pages.classList.add("pages");
+  pages.textContent = `Pages: ${book.pages}`;
   card.appendChild(pages);
 
   //  container for the read status
-  const readStatus = document.createElement('div');
-  readStatus.classList.add('read-status');
+  const readStatus = document.createElement("div");
+  readStatus.classList.add("read-status");
 
-  const label = document.createElement('label');
-  label.setAttribute('for', 'checkbox');
-  label.textContent = 'read';
+  const label = document.createElement("label");
+  label.setAttribute("for", "checkbox");
+  label.textContent = "read";
   readStatus.appendChild(label);
 
-  const read = document.createElement('input');
-  read.setAttribute('type', 'checkbox');
-  read.setAttribute('id', 'checkbox');
-  read.addEventListener('click', changeReadStatus);
+  const read = document.createElement("input");
+  read.setAttribute("type", "checkbox");
+  read.setAttribute("id", "card-checkbox");
+  read.addEventListener("click", changeReadStatus);
 
   if (book.read) {
     read.checked = true;
-    card.classList.add('read');
+    card.classList.add("read");
   }
 
   readStatus.appendChild(read);
   card.appendChild(readStatus);
 
-  const deleteButton = document.createElement('button');
-  deleteButton.textContent = 'Remove Book';
-  deleteButton.addEventListener('click', deleteCardHandler);
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("remove-card");
+  deleteButton.textContent = "X Remove";
+  deleteButton.addEventListener("click", deleteCardHandler);
   card.appendChild(deleteButton);
 
   return card;
 }
 
 function displayBooks() {
-  const container = document.querySelector('.cards-container');
-  const form = document.querySelector('form');
+  const container = document.querySelector(".cards-container");
+  const form = document.querySelector("form");
   container.replaceChildren();
   container.appendChild(form);
   for (let i = 0; i < myLibrary.length; i += 1) {
@@ -86,18 +88,18 @@ function displayBooks() {
 }
 
 function submitEventHandler(event) {
-  const author = document.querySelector('#author').value;
-  const title = document.querySelector('#title').value;
-  const pages = document.querySelector('#pages').value;
-  const read = document.querySelector('#checkbox').checked;
+  const author = document.querySelector("#author").value;
+  const title = document.querySelector("#title").value;
+  const pages = document.querySelector("#pages").value;
+  const read = document.querySelector("#form-checkbox").checked;
   const book = new Book(title, author, pages, read);
   myLibrary.push(book);
 
   displayBooks();
 
-  const form = document.querySelector('form');
+  const form = document.querySelector("form");
   form.reset();
-  form.style.display = 'none';
+  form.style.display = "none";
   event.preventDefault();
 }
 
@@ -108,8 +110,10 @@ function deleteCardHandler(e) {
   displayBooks();
 }
 
-document.querySelector('.add-book').addEventListener('click', addBookToLibrary);
-document.querySelector('.submit-button').addEventListener('click', submitEventHandler);
+document.querySelector(".add-book").addEventListener("click", addBookToLibrary);
+document
+  .querySelector(".submit-button")
+  .addEventListener("click", submitEventHandler);
 
 const book1 = new Book("To Kill a Mockingbird", "Harper Lee", 281, true);
 const book2 = new Book("1984", "George Orwell", 328, true);
