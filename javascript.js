@@ -1,20 +1,21 @@
 /* eslint-disable quotes */
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 
-Book.prototype.toggleRead = function toggleRead() {
-  this.read = !this.read;
-};
+  toggleRead() {
+    this.read = !this.read;
+  }
+}
 
 function addBookToLibrary() {
   const form = document.querySelector("form");
-
   form.style.display = "flex";
 }
 
@@ -105,7 +106,6 @@ function submitEventHandler(event) {
 
 function deleteCardHandler(e) {
   const card = e.target.parentElement;
-  console.log(card.id);
   myLibrary.splice(card.id, 1);
   displayBooks();
 }
